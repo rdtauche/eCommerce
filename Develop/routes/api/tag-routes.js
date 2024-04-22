@@ -12,10 +12,12 @@ router.get('/', async (req, res) => {
       include: [{ model: Product, through: ProductTag, as: 'tag_products' }]
     });
     res.status(200).json(tagData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
   // RDT
@@ -30,10 +32,12 @@ router.get('/:id', (req, res) => {
     }
 
     res.status(200).json(tagData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   // create a new tag
   // RDT
   try {
@@ -41,10 +45,10 @@ router.post('/', (req, res) => {
     res.status(200).json(tagData);
   } catch (err) {
     res.status(400).json(err);
-  }
+  } 
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   // RDT
   try {
@@ -53,10 +57,12 @@ router.put('/:id', (req, res) => {
         id: req.params.id,
       },
     });
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
   // RDT
   try {
@@ -70,6 +76,8 @@ router.delete('/:id', (req, res) => {
       res.status(404).json({ message: 'No tag found with this id!' });
       return;
     }
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

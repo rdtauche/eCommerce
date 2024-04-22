@@ -41,15 +41,15 @@ Product.init(
         model: 'category',
         key: 'id'
       }
-    }
-    product_tag: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: 'tag',
-        key: 'id'
-      }
-    }
+    },
+    // product_tag: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    //   references: {
+    //     model: 'tag',
+    //     key: 'id'
+    //   }
+    // }
   },
   {
     sequelize,

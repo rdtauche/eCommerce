@@ -20,7 +20,10 @@ Product.belongsToMany(Tag, {
   foreignKey: 'product_id',
 });
 // RDT: Tags belongToMany Products (through ProductTag)
-
+Tag.belongsToMany(Product, {
+  through: ProductTag,
+  foreignKey: 'tag_id',
+});
 
 
   // RDT: module export

@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Products
   // RDT
   try {
-    const locationData = await Category.findAll();
+    const CategoryData = await Category.findAll();
     res.status(200).json(CategoryData);
   } catch (err) {
     res.status(500).json(err);
@@ -70,7 +70,7 @@ router.get('/:id', async (req, res) => {
   });
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   // RDT
   try {

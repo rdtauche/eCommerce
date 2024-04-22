@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
       include: [{ model: Category }, { model: Tag, through: ProductTag, as: 'product_tags' }]
     });
     res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -32,15 +34,13 @@ router.get('/:id', async (req, res) => {
     }
 
     res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
 // create new product
 router.post('/', async (req, res) => {
-  try {
-    const productData = await Product.create(req.body);
-    res.status(200).json(productData);
-  }
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -118,7 +118,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   // RDT
   try {
@@ -134,6 +134,8 @@ router.delete('/:id', (req, res) => {
     }
 
     res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
